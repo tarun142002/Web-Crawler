@@ -1,26 +1,13 @@
-
 from flask import Flask, render_template, request
 import requests
 from bs4 import BeautifulSoup
 import csv
 import pymongo
-import lxml
-
-# myclient = pymongo.MongoClient("mongodb+srv://kingrk00786:9876543210@Rk@webcrawlercluster.hxdtzzi.mongodb.net/")
-# mydb = myclient["WebCrawlCluster"]
-# mycol = mydb["Client"]
-# mydict = {"name":"John","address": "Highway 37"}
-# x = mycol.insert_one(mydict)
 
 myclient = pymongo.MongoClient("mongodb+srv://tushar:UcfsrFDx0RmfIQmq@cluster0.zc9dglx.mongodb.net/")
-
 mydb = myclient["test"]
-
 mycol = mydb["users"]
-
-mydict = { "name": "John", "address": "Highway 37" }
-
-
+mydict = {"name": "John", "address": "Highway 37"}
 x = mycol.insert_one(mydict)
 
 app = Flask(__name__, template_folder='template', static_url_path='/static', static_folder='static')
@@ -28,7 +15,6 @@ app = Flask(__name__, template_folder='template', static_url_path='/static', sta
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 def scrape_websites(medicine_name):
     scraped_data = []
@@ -56,8 +42,6 @@ def scrape_websites(medicine_name):
         image_url = images_netmeds[i]
         scraped_data.append({'website': 'netmeds', 'image_url': image_url})
 
-
-
     # 1mg.com
     url_1mg = f'https://www.1mg.com/search/all?name={medicine_name}'
     response = requests.get(url_1mg, headers=header).text
@@ -68,9 +52,7 @@ def scrape_websites(medicine_name):
         image_url = images_1mg[i]
         scraped_data.append({'website': '1mg', 'image_url': image_url})
 
-
     return scraped_data
-
 
 def save_to_csv(scraped_data):
     fieldnames = ['website', 'image_url']
@@ -84,7 +66,6 @@ def save_to_csv(scraped_data):
         # Write each row of data (website and image URL)
         writer.writerows(scraped_data)
 
-
 @app.route('/get_data', methods=['POST'])
 def get_data():
     medicine_name = request.form['medicine_name']
@@ -93,7 +74,6 @@ def get_data():
     scraped_data = scrape_websites(medicine_name)
     save_to_csv(scraped_data)
     return render_template('result.html', data=scraped_data)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
