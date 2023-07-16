@@ -1,20 +1,24 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-image: url(/image/19366.jpg);
+    background-position: 100%;
+    
 }
 
 h1 {
     text-align: center;
     margin-bottom: 30px;
+    font-size: 3rem;
 }
 
 .container {
-    max-width: 600px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     height: 90vh;
     flex-direction: column;
+    align-items: center;
 }
 
 .form-group {
@@ -27,19 +31,22 @@ h1 {
 }
 
 .form-group input[type="text"] {
-    width: 100%;
     padding: 10px;
     font-size: 16px;
+    border-radius: 15px 0 0 15px;
+    width: 35vw;
+    height: 2rem;
 }
 
 .btn {
     display: inline-block;
     background-color: #007bff;
     color: #fff;
-    padding: 10px 20px;
+    padding: 18px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    border-radius: 0 15px 15px 0;
 }
 
 .btn:hover {
