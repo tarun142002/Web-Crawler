@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import pymongo
+import lxml
 
 # myclient = pymongo.MongoClient("mongodb+srv://kingrk00786:9876543210@Rk@webcrawlercluster.hxdtzzi.mongodb.net/")
 # mydb = myclient["WebCrawlCluster"]
