@@ -11,6 +11,10 @@ h1 {
 .container {
     max-width: 600px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+    flex-direction: column;
 }
 
 .form-group {
