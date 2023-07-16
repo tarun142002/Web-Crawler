@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Crawler - Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Web Crawler - Result</h1>
+        <div class="result-container">
+            <h2>Images Scraped Successfully!</h2>
+            <p>The images have been scraped and saved to the CSV file.</p>
+            <table>
+                <tr>
+                    <th>Website</th>
+                    <th>Image</th>
+                </tr>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item['website'] }}</td>
+                    <td><img src="{{ item['image_url'] }}" alt="{{ item['website'] }} image" width="100"></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
